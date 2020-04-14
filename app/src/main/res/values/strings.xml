@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">4020-Assignment3</string>
+    <string name="app_name">Simon</string>
     <string name="simon_says">Simon Says</string>
     <string name="player_adds">Player Adds</string>
     <string name="exit">Exit</string>
@@ -7,4 +7,5 @@
     <string name="simon_rewind">Simon Rewind</string>
     <string name="welcome_msg">Welcome to Simon!</string>
     <string name="simon_logo">Simon Logo</string>
+    <string name="x">X</string>
 </resources>

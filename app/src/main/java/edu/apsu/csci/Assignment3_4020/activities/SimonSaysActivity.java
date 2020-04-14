@@ -6,7 +6,6 @@
 
 package edu.apsu.csci.Assignment3_4020.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class SimonSaysActivity extends GameBoardActivity {
 
-public class SimonSaysActivity extends AppCompatActivity {
 }

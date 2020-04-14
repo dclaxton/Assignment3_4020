@@ -5,7 +5,5 @@
  */
 package edu.apsu.csci.Assignment3_4020.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class SimonRewindActivity extends AppCompatActivity {
+public class SimonRewindActivity extends GameBoardActivity {
 }

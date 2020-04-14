@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="edu.apsu.csci.Assignment3_4020.activities.GameBoardActivity"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
             android:name="edu.apsu.csci.Assignment3_4020.activities.SimonSaysActivity"
             android:windowSoftInputMode="stateHidden" >
         </activity>
