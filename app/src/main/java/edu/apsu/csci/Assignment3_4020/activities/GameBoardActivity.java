@@ -7,24 +7,27 @@
 package edu.apsu.csci.Assignment3_4020.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.Set;
 
 import edu.apsu.csci.Assignment3_4020.R;
+import edu.apsu.csci.Assignment3_4020.classes.Alert;
 import edu.apsu.csci.Assignment3_4020.classes.GamePiece;
 
 public class GameBoardActivity extends AppCompatActivity implements GamePiece.PushListener {
@@ -35,9 +38,13 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
 
     private TextView indicator;
 
-    protected LinkedHashMap moves = new LinkedHashMap();
+    private ArrayList<GamePiece> moves;
+    private int currentMove = 0;
+
     public SoundPool soundPool;
     private Set<Integer> soundsLoaded;
+
+    public Alert alert;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +74,8 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
             }
         }
 
+        alert = new Alert();
+        initializeSimon();
     }
 
     @Override
@@ -74,5 +83,13 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
 
     }
 
+    public void initializeSimon() {
+        moves = new ArrayList<>();
+        incrementSimon();
+    }
 
+    public void incrementSimon() {
+        moves.add(board[(int) (Math.random() * board.length)]);
+        //playSimon();
+    }
 }

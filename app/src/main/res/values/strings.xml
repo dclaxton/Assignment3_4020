@@ -8,7 +8,34 @@
     <string name="simon_logo">Simon Logo</string>
     <string name="x">X</string>
     <string name="credits">Credits</string>
+
     <string name="credit_info">Developers: Daniel Davis, Dalton Claxton, Peyton White
         \n\nSounds: https://freesound.org\n\nImages: https://cleanpng.com\n\nBoard pieces: https://github.com/j-san
     </string>
+
+    <string name="simon_says_instructions">
+        1. Simon will give the first signal.\n\n
+        2. Repeat the signal by pressing the same button.\n\n
+        3. Simon will duplicate the first signal and will add one.\n\n
+        4. Repeat these two signals by pressing the same buttons.\n\n
+        5. Simon will duplicate these signals and add one.\n\n
+        6. Continue in this manner as long as you can repeat each sequence correctly.\n\n
+        7. If you fail to repeat a sequence exactly or take more than 5 seconds to repeat a signal,
+        the game is over. </string>
+    <string name="player_adds_instructions">
+        1. Simon will give the first signal.\n\n
+        2. Repeat the signal and add one more.\n\n
+        3. Continue repeating the signals and increasing the sequence by one as long as you can do
+        so correctly.\n\n
+        4. If you make an error or take more than 5 seconds to play a signal, the game is over.
+    </string>
+    <string name="simon_rewind_instructions">
+        1. Simon will give the first signal.\n\n
+        2. Repeat the signal by pressing the same button.\n\n
+        3. Simon will duplicate the first signal and will add one.\n\n
+        4. Repeat these two signals by pressing the same buttons in REVERSE order.\n\n
+        5. Simon will duplicate these signals and add one.\n\n
+        6. Continue in this manner as long as you can repeat each sequence in reverse correctly!
+    </string>
+
 </resources>
