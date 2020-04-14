@@ -27,6 +27,7 @@ public class MenuActivity extends AppCompatActivity {
         findViewById(R.id.simon_says_button).setOnClickListener(new GoToActivity(this, SimonSaysActivity.class));
         findViewById(R.id.player_adds_button).setOnClickListener(new GoToActivity(this, PlayerAddsActivity.class));
         findViewById(R.id.simon_rewind_button).setOnClickListener(new GoToActivity(this, SimonRewindActivity.class));
+        findViewById(R.id.credits_button).setOnClickListener(new GoToActivity(this, CreditsActivity.class));
     }
 
     // Exit button
