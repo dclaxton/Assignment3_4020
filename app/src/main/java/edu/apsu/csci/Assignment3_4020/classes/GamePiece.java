@@ -17,6 +17,7 @@ import android.view.View;
 
 public class GamePiece extends View implements View.OnTouchListener {
     private GradientDrawable drawable;
+    public boolean enabled = true;
 
     public interface PushListener {
         public void onPush(View v);
@@ -35,16 +36,19 @@ public class GamePiece extends View implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent evt) {
-        if(evt.getAction() == MotionEvent.ACTION_DOWN) {
-            on();
-        }
-        if(evt.getAction() == MotionEvent.ACTION_UP) {
-            off();
-            if(onPushListener != null) {
-                onPushListener.onPush(this);
+        if (enabled) {
+            if (evt.getAction() == MotionEvent.ACTION_DOWN) {
+                on();
             }
+            if (evt.getAction() == MotionEvent.ACTION_UP) {
+                off();
+                if (onPushListener != null) {
+                    onPushListener.onPush(this);
+                }
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void on() {

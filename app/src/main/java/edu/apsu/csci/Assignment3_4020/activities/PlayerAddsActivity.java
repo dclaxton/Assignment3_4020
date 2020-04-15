@@ -12,14 +12,4 @@ import edu.apsu.csci.Assignment3_4020.R;
 
 public class PlayerAddsActivity extends GameBoardActivity {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        alert.showInstructions(this);
-    }
-
-    private void playPlayerAdds() {
-
-    }
 }

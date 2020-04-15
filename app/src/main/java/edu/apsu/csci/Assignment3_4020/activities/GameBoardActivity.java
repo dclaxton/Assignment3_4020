@@ -8,11 +8,13 @@ package edu.apsu.csci.Assignment3_4020.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -36,15 +38,18 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
     private GamePiece red, green, blue, yellow;
     private GamePiece[] board;
 
-    private TextView indicator;
+    protected TextView indicator;
 
-    private ArrayList<GamePiece> moves;
-    private int currentMove = 0;
+    protected ArrayList<GamePiece> moves;
+    protected int simonMove = 0;
 
-    public SoundPool soundPool;
+    protected boolean userPlaying;
+    protected int userMove = 0;
+
+    protected SoundPool soundPool;
     private Set<Integer> soundsLoaded;
 
-    public Alert alert;
+    protected Alert alert;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,28 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
         setContentView(R.layout.activity_board);
 
         indicator = findViewById(R.id.indicator);
+        activateBoard();
+        boardEnabled(false);
 
+        alert = new Alert(this);
+        alert.setPositiveButton(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dcl, int i) {
+                if (i == DialogInterface.BUTTON_POSITIVE) {
+                    (new Handler()).postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initializeSimon();
+                            playSimon();
+                        }
+                    }, 1000);
+                }
+            }
+        });
+        alert.showInstructions();
+    }
+
+    private void activateBoard() {
         board = new GamePiece[4];
         ViewGroup gameBoard = findViewById(R.id.gameBoardLL);
         int position = 0;
@@ -67,29 +93,91 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
                         GamePiece piece = (GamePiece) ((LinearLayout) child).getChildAt(j);
 
                         board[position] = findViewById(piece.getId());
-                        board[position].setPushListener(piece.getPushListener());
+                        board[position].setPushListener(this);
                         position++;
                     }
                 }
             }
         }
-
-        alert = new Alert();
-        initializeSimon();
     }
+
+    private void boardEnabled(boolean b) {
+        for (GamePiece piece : board) {
+            piece.enabled = b;
+            }
+        }
 
     @Override
     public void onPush(View v) {
+        if (userPlaying) {
+            if (v == moves.get(userMove)) {
+                indicator.setText("" + (userMove + 1));
+                userMove++;
 
+                if (userMove >= moves.size()) {
+                    userPlaying = false;
+                    userMove = 0;
+                    indicator.setText("\u2714"); // Check mark
+
+                    (new Handler()).postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            incrementSimon();
+                        }
+                    }, 1000);
+                }
+            } else {
+                userPlaying = false;
+                userMove = 0;
+                indicator.setText("\u2718"); // X mark
+
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        initializeSimon();
+                    }
+                }, 3000);
+            }
+        }
     }
 
-    public void initializeSimon() {
+    protected void initializeSimon() {
         moves = new ArrayList<>();
         incrementSimon();
     }
 
     public void incrementSimon() {
         moves.add(board[(int) (Math.random() * board.length)]);
-        //playSimon();
+        playSimon();
+    }
+
+    protected void playSimon() {
+        boardEnabled(false);
+        indicator.setText("" + (simonMove + 1));
+
+        (new Handler()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                moves.get(simonMove).on();
+
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        moves.get(simonMove).off();
+
+                        simonMove++;
+                        if(simonMove < moves.size()) {
+                            playSimon();
+                        } else {
+                            indicator.setText("?");
+                            boardEnabled(true);
+
+                            simonMove = 0;
+                            userPlaying = true;
+                        }
+                    }
+                }, 300);
+            }
+        }, 1000);
     }
 }

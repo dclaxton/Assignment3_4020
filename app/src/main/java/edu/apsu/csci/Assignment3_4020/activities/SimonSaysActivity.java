@@ -7,18 +7,9 @@
 package edu.apsu.csci.Assignment3_4020.activities;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
 
 public class SimonSaysActivity extends GameBoardActivity {
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        alert.showInstructions(this);
-    }
-
-    private void playSimonSays() {
-
-    }
 
 }
