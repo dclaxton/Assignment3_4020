@@ -6,10 +6,8 @@
 
 package edu.apsu.csci.Assignment3_4020.activities;
 
-import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
-import edu.apsu.csci.Assignment3_4020.R;
-
-public class PlayerAddsActivity extends GameBoardActivity {
+public class PlayerAddsActivity extends AppCompatActivity {
 
 }

@@ -11,16 +11,21 @@ package edu.apsu.csci.Assignment3_4020.classes;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
+import android.media.SoundPool;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class GamePiece extends View implements View.OnTouchListener {
+
     private GradientDrawable drawable;
     public boolean enabled = true;
 
+    private SoundPool soundPool;
+    private int soundId;
+
     public interface PushListener {
-        public void onPush(View v);
+        void onPush(View v);
     }
 
     private PushListener onPushListener;
@@ -53,6 +58,7 @@ public class GamePiece extends View implements View.OnTouchListener {
 
     public void on() {
         drawable.setAlpha(0);
+        playSound();
     }
 
     public void off() {
@@ -65,5 +71,14 @@ public class GamePiece extends View implements View.OnTouchListener {
 
     public void setPushListener(PushListener l) {
         this.onPushListener = l;
+    }
+
+    public void setSoundListener(SoundPool sp, int soundId) {
+        this.soundPool = sp;
+        this.soundId = soundId;
+    }
+
+    public void playSound() {
+        soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
     }
 }

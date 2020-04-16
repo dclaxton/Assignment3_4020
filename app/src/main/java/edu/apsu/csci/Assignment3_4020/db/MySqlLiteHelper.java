@@ -1,3 +1,9 @@
+/*
+    Authors: Daniel Davis, Dalton Claxton, Peyton White
+    Date: 14 April 2020
+    Description: A simple implementation of the classic game Simon
+ */
+
 package edu.apsu.csci.Assignment3_4020.db;
 
 import android.content.Context;
@@ -30,16 +36,10 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         }
     }
 
-
-
     MySqlLiteHelper(Context context)
     {
         super(context, DB_NAME, null, DB_VERSION);
     }
-
-
-
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
