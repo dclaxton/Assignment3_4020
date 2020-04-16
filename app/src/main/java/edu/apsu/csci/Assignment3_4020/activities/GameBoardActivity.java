@@ -47,7 +47,7 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
     protected boolean userPlaying;
     protected int userMove = 0;
 
-    protected SoundPool soundPool;
+    private SoundPool soundPool;
     private Set<Integer> soundsLoaded;
 
     protected Alert alert;
@@ -58,7 +58,7 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_board);
 
-        soundsLoaded = new HashSet<>();
+        soundsLoaded = new HashSet<Integer>();
 
         indicator = findViewById(R.id.indicator);
         activateBoard();
@@ -103,6 +103,7 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
                 {
                     ///success
                     soundsLoaded.add(sampleId);
+                    Log.i("Sound","Sound Loaded " + sampleId);
                 }
                 else {
                     //error not load sound log message + status var
@@ -112,11 +113,10 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
         });
 
         //load sounds final for now but might based on listerners
-        final int dooId = soundPool.load(this,R.raw.doo,1);
+        int dooId = soundPool.load(this,R.raw.doo,1);
         final int faId = soundPool.load(this,R.raw.fa,1);
         final int miId = soundPool.load(this,R.raw.mi,1);
         final int reId = soundPool.load(this,R.raw.re,1);
-
 
 
 
@@ -128,6 +128,14 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
     protected void onStop() {
         super.onStop();
         //release the sounds
+        if(soundPool != null)
+        {
+            soundPool.release();
+            soundPool = null;
+
+            soundsLoaded.clear();
+        }
+
 
 
     }
@@ -139,6 +147,11 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
         if(soundsLoaded.contains(soundId))
         {
             soundPool.play(soundId,1.0f,1.0f,0,0,1.0f);
+            Log.i("Sound","played sound");
+
+        }
+        else {
+            Log.i("Sound","does not contain sound");
         }
 
 
@@ -207,6 +220,8 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
                 }, 3000);
             }
         }
+
+
     }
 
     protected void initializeSimon() {
