@@ -9,6 +9,7 @@ package edu.apsu.csci.Assignment3_4020.activities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -85,21 +86,62 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
     protected void onStart() {
         super.onStart();
         //load the sounds
+        AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
+        attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
+
+        SoundPool.Builder spBuilder = new SoundPool.Builder();
+        spBuilder.setAudioAttributes(attrBuilder.build());
+        //might need to set it to 1
+        spBuilder.setMaxStreams(4);
+        soundPool = spBuilder.build();
+
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+
+                if(status == 0)
+                {
+                    ///success
+                    soundsLoaded.add(sampleId);
+                }
+                else {
+                    //error not load sound log message + status var
+                    Log.i("Sound","Sound Not Loaded");
+                }
+            }
+        });
+
+        //load sounds final for now but might based on listerners
+        final int dooId = soundPool.load(this,R.raw.doo,1);
+        final int faId = soundPool.load(this,R.raw.fa,1);
+        final int miId = soundPool.load(this,R.raw.mi,1);
+        final int reId = soundPool.load(this,R.raw.re,1);
 
 
-        
+
+
+
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         //release the sounds
+
+
     }
 
 
-    private void playSound(int soundID)
+    private void playSound(int soundId)
     {
         //play the sound
+        if(soundsLoaded.contains(soundId))
+        {
+            soundPool.play(soundId,1.0f,1.0f,0,0,1.0f);
+        }
+
+
     }
 
 
