@@ -57,6 +57,8 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_board);
 
+        soundsLoaded = new HashSet<>();
+
         indicator = findViewById(R.id.indicator);
         activateBoard();
         boardEnabled(false);
@@ -78,6 +80,30 @@ public class GameBoardActivity extends AppCompatActivity implements GamePiece.Pu
         });
         alert.showInstructions();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //load the sounds
+
+
+        
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //release the sounds
+    }
+
+
+    private void playSound(int soundID)
+    {
+        //play the sound
+    }
+
+
+
 
     private void activateBoard() {
         board = new GamePiece[4];
