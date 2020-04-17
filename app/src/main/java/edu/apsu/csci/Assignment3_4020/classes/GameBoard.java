@@ -70,15 +70,19 @@ public abstract class GameBoard implements GamePiece.PushListener {
             switch (piece.getId()) {
                 case R.id.topleft:
                     piece.setSoundListener(soundPool, doId);
+                    piece.setTag(0);
                     break;
                 case R.id.topright:
                     piece.setSoundListener(soundPool, reId);
+                    piece.setTag(1);
                     break;
                 case R.id.bottomleft:
                     piece.setSoundListener(soundPool, miId);
+                    piece.setTag(2);
                     break;
                 case R.id.bottomright:
                     piece.setSoundListener(soundPool, faId);
+                    piece.setTag(3);
                     break;
                 default:
                     break;
