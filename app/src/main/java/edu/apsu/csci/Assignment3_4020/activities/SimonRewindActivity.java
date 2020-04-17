@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.apsu.csci.Assignment3_4020.R;
 import edu.apsu.csci.Assignment3_4020.classes.Alert;
 import edu.apsu.csci.Assignment3_4020.classes.GameBoard;
+import edu.apsu.csci.Assignment3_4020.db.DbDataSource;
 
 public class SimonRewindActivity extends AppCompatActivity {
     private GameBoard board;
@@ -25,11 +26,15 @@ public class SimonRewindActivity extends AppCompatActivity {
     private boolean userPlaying;
     private int userMove = 1;
 
+    private DbDataSource dataSource;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_board);
+
+        dataSource = new DbDataSource(this);
 
         board = new GameBoard(this) {
             @Override
@@ -55,6 +60,7 @@ public class SimonRewindActivity extends AppCompatActivity {
                         }
                     } else {
                         userPlaying = false;
+                        dataSource.insertHighscore(userMove,2);
                         userMove = 1;
                         enableBoard(false);
 

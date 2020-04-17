@@ -29,29 +29,52 @@ public class HighscoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_highscores);
 
         dataSource = new DbDataSource(this);
-        highscores = dataSource.getAllHighscores();
 
 
 
-        final TextView tv = findViewById(R.id.textviewhighscores);
+
+        //final TextView tv = findViewById(R.id.textviewhighscores);
 
         findViewById(R.id.buttonsimonsays).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tv.setText("");
-                for(int i : highscores)
-                {
-                    tv.append(i + "\n");
-                    Log.i("Highscores","S: " + i);
-                }
+                highscores = dataSource.getAllHighscores(1);
+                showHighscores(highscores);
 
+            }
+        });
 
+        findViewById(R.id.buttonsimonrewind).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                highscores = dataSource.getAllHighscores(2);
+                showHighscores(highscores);
+            }
+        });
+
+        findViewById(R.id.buttonplayeradd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                highscores = dataSource.getAllHighscores(3);
+                showHighscores(highscores);
             }
         });
 
 
 
-
-
     }
+
+    private void showHighscores(List<Integer> highscores)
+    {
+        final TextView tv = findViewById(R.id.textviewhighscores);
+        tv.setText("");
+        for(int i : highscores)
+        {
+            tv.append(i + "\n");
+            Log.i("Highscores","S: " + i);
+        }
+    }
+
+
+
 }
