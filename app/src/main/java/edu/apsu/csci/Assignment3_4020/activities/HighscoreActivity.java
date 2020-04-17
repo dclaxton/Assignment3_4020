@@ -8,13 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import edu.apsu.csci.Assignment3_4020.R;
 
+
 public class HighscoreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-       // setContentView(R.layout.activity_board);
+        setContentView(R.layout.activity_highscores);
 
 
 
