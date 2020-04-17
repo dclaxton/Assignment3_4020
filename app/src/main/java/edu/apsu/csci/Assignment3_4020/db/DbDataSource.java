@@ -79,9 +79,14 @@ public class DbDataSource {
     private Integer cursorToHighscore(Cursor cursor)
     {
 
+
         //int scoreId = cursor.getInt(MySqlLiteHelper.HighscoreColumns.primary_key.ordinal());
 
         int simonSays = cursor.getInt(MySqlLiteHelper.HighscoreColumns.simon_says.ordinal());
+       // int simonRewind = cursor.getInt(MySqlLiteHelper.HighscoreColumns.simon_rewind.ordinal());
+        //int playerAdd = cursor.getInt(MySqlLiteHelper.HighscoreColumns.player_adds.ordinal());
+
+
         Integer highScore = new Integer(simonSays);
 
         //String dateStr = cursor.getString(MySqlLiteHelper.HighscoreColumns.date_created.ordinal());

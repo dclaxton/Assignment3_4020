@@ -51,7 +51,7 @@ public class SimonSaysActivity extends AppCompatActivity {
 
                         if (userMove >= board.sizeOfMoves()) {
                             userPlaying = false;
-                            dataSource.insertHighscore(userMove,1);
+
                             userMove = 0;
                             enableBoard(false);
 
@@ -66,7 +66,7 @@ public class SimonSaysActivity extends AppCompatActivity {
                         }
                     } else {
                         userPlaying = false;
-
+                        dataSource.insertHighscore(userMove,1);
                         userMove = 0;
                         enableBoard(false);
 
