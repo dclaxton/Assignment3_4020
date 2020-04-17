@@ -20,14 +20,13 @@
         4. Repeat these two signals by pressing the same buttons.\n\n
         5. Simon will duplicate these signals and add one.\n\n
         6. Continue in this manner as long as you can repeat each sequence correctly.\n\n
-        7. If you fail to repeat a sequence exactly or take more than 5 seconds to repeat a signal,
-        the game is over. </string>
+        7. If you fail to repeat a sequence exactly, the game is over. </string>
     <string name="player_adds_instructions">
         1. Simon will give the first signal.\n\n
         2. Repeat the signal and add one more.\n\n
-        3. Continue repeating the signals and increasing the sequence by one as long as you can do
-        so correctly.\n\n
-        4. If you make an error or take more than 5 seconds to play a signal, the game is over.
+        3. Continue repeating the previous signals and increasing the sequence by one as long as you
+        can do so correctly.\n\n
+        4. If you fail to repeat your own sequence correctly, the game is over.
     </string>
     <string name="simon_rewind_instructions">
         1. Simon will give the first signal.\n\n

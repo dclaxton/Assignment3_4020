@@ -18,14 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.apsu.csci.Assignment3_4020.R;
 import edu.apsu.csci.Assignment3_4020.classes.Alert;
 import edu.apsu.csci.Assignment3_4020.classes.GameBoard;
-import edu.apsu.csci.Assignment3_4020.classes.GamePiece;
 
 public class PlayerAddsActivity extends AppCompatActivity {
     private GameBoard board;
-    protected boolean userPlaying;
-    protected int userMove = 0;
-    protected int simonMove = 0;
-    protected Alert alert;
+    private boolean userPlaying;
+    private boolean patternUpdating = false;
+
+    private int userMove = 0;
+    private int simonMove = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,34 +37,36 @@ public class PlayerAddsActivity extends AppCompatActivity {
             @Override
             public void onPush(View v) {
                 if (userPlaying) {
-                    Log.i("TEST", "user1: " + userMove + " board1: " + board.sizeOfMoves());
-                    if (userMove >= board.sizeOfMoves()) {
-                        if(userMove > board.sizeOfMoves())
-                        {
-                            board.addMove(board.getBoardAt((int) v.getTag()));
-                            userMove = 0;
-                        }
-                        setIndicator("\u2714"); // Check mark
-                        userMove++;
-                    } else {
-                        if (v == board.getMove(userMove)) {
-                            setIndicator("" + (userMove + 1));
-                            userMove++;
-                            Log.i("TEST", "user: " + userMove + " board: " + board.sizeOfMoves());
-                            Log.i("TEST", "boardAt " + board.getBoardAt((int) v.getTag()));
-                        } else {
-                            userPlaying = false;
-                            userMove = 0;
-                            enableBoard(false);
-                            setIndicator("\u2718"); // X mark
+                    if (patternUpdating && userMove == board.sizeOfMoves()) {
+                        board.addMove(board.getBoardAt(v));
+                        board.setIndicator("?");
 
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    initializeSimon();
-                                }
-                            }, 2000);
-                        }
+                        patternUpdating = false;
+                        userMove = 0;
+                        return;
+                    }
+
+                    if (v == board.getMove(userMove)) {
+                        setIndicator("" + (userMove + 1));
+                        userMove++;
+
+                     if (userMove == board.sizeOfMoves()) {
+                         patternUpdating = true;
+                     }
+
+                    } else {
+                        userPlaying = false;
+                        userMove = 0;
+                        enableBoard(false);
+
+                        setIndicator("\u2718"); // X mark
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                initializeSimon();
+                            }
+                        }, 2000);
                     }
                 }
             }
@@ -72,7 +74,8 @@ public class PlayerAddsActivity extends AppCompatActivity {
 
         board.initBoard();
         board.enableBoard(false);
-        alert = new Alert(this);
+
+        Alert alert = new Alert(this);
         alert.setPositiveButton(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dcl, int i) {

@@ -22,16 +22,13 @@ import edu.apsu.csci.Assignment3_4020.db.DbDataSource;
 public class SimonSaysActivity extends AppCompatActivity {
     private GameBoard board;
 
-    protected int simonMove = 0;
+    private int simonMove = 0;
 
-    protected boolean userPlaying;
-    protected int userMove = 0;
-
-    protected Alert alert;
+    private boolean userPlaying;
+    private int userMove = 0;
 
     //for db
     private DbDataSource dataSource;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,7 +83,7 @@ public class SimonSaysActivity extends AppCompatActivity {
         board.initBoard();
         board.enableBoard(false);
 
-        alert = new Alert(this);
+        Alert alert = new Alert(this);
         alert.setPositiveButton(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dcl, int i) {

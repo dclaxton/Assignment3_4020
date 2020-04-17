@@ -20,12 +20,10 @@ import edu.apsu.csci.Assignment3_4020.classes.GameBoard;
 public class SimonRewindActivity extends AppCompatActivity {
     private GameBoard board;
 
-    protected int simonMove = 0;
+    private int simonMove = 0;
 
-    protected boolean userPlaying;
-    protected int userMove = 1;
-
-    protected Alert alert;
+    private boolean userPlaying;
+    private int userMove = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,7 +74,7 @@ public class SimonRewindActivity extends AppCompatActivity {
         board.initBoard();
         board.enableBoard(false);
 
-        alert = new Alert(this);
+        Alert alert = new Alert(this);
         alert.setPositiveButton(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dcl, int i) {

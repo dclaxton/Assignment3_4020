@@ -10,8 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import edu.apsu.csci.Assignment3_4020.R;
 
@@ -109,6 +107,15 @@ public abstract class GameBoard implements GamePiece.PushListener {
 
     public GamePiece getBoardAt(int i) {
         return board[i];
+    }
+
+    public GamePiece getBoardAt(View v) {
+        for (GamePiece piece : board) {
+            if (piece.getId() == v.getId()) {
+                return piece;
+            }
+        }
+        return null;
     }
 
     public void setIndicator(String s) {
