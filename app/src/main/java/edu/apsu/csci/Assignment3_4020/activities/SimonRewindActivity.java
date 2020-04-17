@@ -42,13 +42,6 @@ public class SimonRewindActivity extends GameLogic {
                 board.enableBoard(false);
 
                 board.setIndicator("\u2718"); // X mark
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        initializeSimon();
-                    }
-                }, 2000);
             }
         }
     }

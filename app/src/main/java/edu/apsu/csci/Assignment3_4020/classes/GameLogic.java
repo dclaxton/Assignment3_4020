@@ -1,5 +1,6 @@
 package edu.apsu.csci.Assignment3_4020.classes;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -60,7 +61,7 @@ public abstract class GameLogic extends AppCompatActivity {
         alert = new Alert(this);
         alert.setPositiveButton("Play!", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dcl, int i) {
+            public void onClick(DialogInterface dialog, int i) {
                 if (i == DialogInterface.BUTTON_POSITIVE) {
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -76,16 +77,21 @@ public abstract class GameLogic extends AppCompatActivity {
         alert.showInstructions();
     }
 
-    public void endGame(int whichgame) {
+    public void endGame(int whichGame) {
         alert = new Alert(this);
         alert.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dcl, int i) {
+            public void onClick(DialogInterface dialog, int i) {
                 if (i == DialogInterface.BUTTON_POSITIVE) {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            // Restart game code here
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    initializeSimon();
+                                }
+                            }, 1000);
                         }
                     }, 1000);
                 }
@@ -94,9 +100,9 @@ public abstract class GameLogic extends AppCompatActivity {
 
         alert.setNegativeButton("Menu", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dcl, int i) {
+            public void onClick(DialogInterface dialog, int i) {
                 if (i == DialogInterface.BUTTON_NEGATIVE) {
-                    // Back to menu code here
+                    finish();
                 }
             }
         });
@@ -108,9 +114,6 @@ public abstract class GameLogic extends AppCompatActivity {
 
         // Pass DB scores here
         alert.showHighScores(highscore);
-
-
-
     }
 
     protected void initializeSimon() {

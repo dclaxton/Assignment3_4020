@@ -42,11 +42,10 @@ class Alert {
     }
 
     void setPositiveButton(String s, DialogInterface.OnClickListener dcl) {
-
         aBuilder.setPositiveButton(s, dcl);
     }
 
     void setNegativeButton(String s, DialogInterface.OnClickListener dcl) {
-        aBuilder.setPositiveButton(s, dcl);
+        aBuilder.setNegativeButton(s, dcl);
     }
 }
