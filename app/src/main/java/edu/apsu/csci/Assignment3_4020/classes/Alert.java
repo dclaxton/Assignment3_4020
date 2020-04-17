@@ -9,19 +9,19 @@ import edu.apsu.csci.Assignment3_4020.activities.PlayerAddsActivity;
 import edu.apsu.csci.Assignment3_4020.activities.SimonRewindActivity;
 import edu.apsu.csci.Assignment3_4020.activities.SimonSaysActivity;
 
-public class Alert {
+class Alert {
 
     private AlertDialog.Builder aBuilder;
     private AlertDialog ad;
     private Context c;
 
-    public Alert(Context c) {
+    Alert(Context c) {
         aBuilder = new AlertDialog.Builder(c);
         ad = null;
         this.c = c;
     }
 
-    public void showInstructions() {
+    void showInstructions() {
         if (c instanceof SimonSaysActivity) {
             aBuilder.setMessage(R.string.simon_says_instructions);
         } else if (c instanceof PlayerAddsActivity) {
@@ -34,7 +34,15 @@ public class Alert {
         ad.show();
     }
 
-    public void setPositiveButton(DialogInterface.OnClickListener dcl) {
-        aBuilder.setPositiveButton("Play!", dcl);
+    void showHighScores(String s) {
+        aBuilder.setMessage(s);
+    }
+
+    void setPositiveButton(String s, DialogInterface.OnClickListener dcl) {
+        aBuilder.setPositiveButton(s, dcl);
+    }
+
+    void setNegativeButton(String s, DialogInterface.OnClickListener dcl) {
+        aBuilder.setPositiveButton(s, dcl);
     }
 }

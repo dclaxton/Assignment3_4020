@@ -21,6 +21,8 @@ public abstract class GameLogic extends AppCompatActivity {
     protected boolean userPlaying;
     protected int userMove = 0;
 
+    private Alert alert;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +57,8 @@ public abstract class GameLogic extends AppCompatActivity {
     }
 
     public void startGame() {
-        Alert alert = new Alert(this);
-        alert.setPositiveButton(new DialogInterface.OnClickListener() {
+        alert = new Alert(this);
+        alert.setPositiveButton("Play!", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dcl, int i) {
                 if (i == DialogInterface.BUTTON_POSITIVE) {
@@ -72,6 +74,35 @@ public abstract class GameLogic extends AppCompatActivity {
         });
 
         alert.showInstructions();
+    }
+
+    public void endGame() {
+        alert = new Alert(this);
+        alert.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dcl, int i) {
+                if (i == DialogInterface.BUTTON_POSITIVE) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Restart game code here
+                        }
+                    }, 1000);
+                }
+            }
+        });
+
+        alert.setNegativeButton("Menu", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dcl, int i) {
+                if (i == DialogInterface.BUTTON_NEGATIVE) {
+                    // Back to menu code here
+                }
+            }
+        });
+
+        // Pass DB scores here
+        alert.showHighScores("");
     }
 
     protected void initializeSimon() {
