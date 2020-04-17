@@ -30,9 +30,6 @@ public class HighscoreActivity extends AppCompatActivity {
 
         dataSource = new DbDataSource(this);
 
-
-
-
         //final TextView tv = findViewById(R.id.textviewhighscores);
 
         findViewById(R.id.buttonsimonsays).setOnClickListener(new View.OnClickListener() {
@@ -74,7 +71,5 @@ public class HighscoreActivity extends AppCompatActivity {
             Log.i("Highscores","S: " + i);
         }
     }
-
-
 
 }
