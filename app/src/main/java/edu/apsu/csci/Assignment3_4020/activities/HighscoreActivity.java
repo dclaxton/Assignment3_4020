@@ -67,8 +67,10 @@ public class HighscoreActivity extends AppCompatActivity {
         tv.setText("");
         for(int i : highscores)
         {
-            tv.append(i + "\n");
-            Log.i("Highscores","S: " + i);
+            if(i > 0) {
+                tv.append(i + "\n");
+                Log.i("Highscores", "S: " + i);
+            }
         }
     }
 

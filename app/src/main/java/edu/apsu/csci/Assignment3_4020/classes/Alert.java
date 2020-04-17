@@ -35,10 +35,14 @@ class Alert {
     }
 
     void showHighScores(String s) {
+
         aBuilder.setMessage(s);
+        ad = aBuilder.create();
+        ad.show();
     }
 
     void setPositiveButton(String s, DialogInterface.OnClickListener dcl) {
+
         aBuilder.setPositiveButton(s, dcl);
     }
 

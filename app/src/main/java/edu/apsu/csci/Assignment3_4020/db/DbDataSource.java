@@ -129,6 +129,27 @@ public class DbDataSource {
         return highScore;
     }
 
+    //this is for the endgame alert dialog
+    public String getHighscore(int whichGame)
+    {
+        List<Integer> highscores = getAllHighscores(whichGame);
+        int highScore = highscores.get(0);
+
+
+        for(int i : highscores)
+        {
+            if(i > highScore)
+            {
+                highScore = i;
+            }
+
+        }
+
+
+
+        return String.valueOf(highScore);
+    }
+
 
 
 

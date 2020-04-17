@@ -76,7 +76,7 @@ public abstract class GameLogic extends AppCompatActivity {
         alert.showInstructions();
     }
 
-    public void endGame() {
+    public void endGame(int whichgame) {
         alert = new Alert(this);
         alert.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
             @Override
@@ -101,8 +101,16 @@ public abstract class GameLogic extends AppCompatActivity {
             }
         });
 
+
+        //get certain game highscores
+        DbDataSource dataSource = new DbDataSource(this);
+        String highscore = "highscore: " + dataSource.getHighscore(1);
+
         // Pass DB scores here
-        alert.showHighScores("");
+        alert.showHighScores(highscore);
+
+
+
     }
 
     protected void initializeSimon() {

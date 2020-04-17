@@ -39,8 +39,10 @@ public class SimonSaysActivity extends GameLogic {
                 dataSource.insertHighscore(userMove, 1);
                 userMove = 0;
                 board.enableBoard(false);
+                endGame(1);
 
                 board.setIndicator("\u2718"); // X mark
+
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
