@@ -37,6 +37,7 @@ public class DbDataSource {
 
     // Gets all Highscores
     public List<Integer> getAllHighscores() {
+        open();
         List<Integer> highscores = new ArrayList<>();
         String columns[] = MySqlLiteHelper.HighscoreColumns.names();
         Cursor cursor = database.query(MySqlLiteHelper.DATA_TABLE,columns,null,null,null,null, null);
@@ -53,7 +54,7 @@ public class DbDataSource {
     }
 
     // Inserts highscore into DB
-    public void insertHighscore(String scoreRecorded,int whichGame) {
+    public void insertHighscore(int scoreRecorded,int whichGame) {
         ContentValues contentValues = new ContentValues();
         if(whichGame == 1)
         {
@@ -74,14 +75,14 @@ public class DbDataSource {
     }
 
 
-//going to need updating 
+//going to need updating
     private Integer cursorToHighscore(Cursor cursor)
     {
-        Integer highScore = new Integer(1);
+
         //int scoreId = cursor.getInt(MySqlLiteHelper.HighscoreColumns.primary_key.ordinal());
 
-        String SimonSays = cursor.getString(MySqlLiteHelper.HighscoreColumns.simon_says.ordinal());
-
+        int simonSays = cursor.getInt(MySqlLiteHelper.HighscoreColumns.simon_says.ordinal());
+        Integer highScore = new Integer(simonSays);
 
         //String dateStr = cursor.getString(MySqlLiteHelper.HighscoreColumns.date_created.ordinal());
 

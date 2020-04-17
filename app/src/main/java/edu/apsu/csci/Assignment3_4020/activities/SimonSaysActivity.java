@@ -39,6 +39,8 @@ public class SimonSaysActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_board);
 
+        dataSource = new DbDataSource(this);
+
         board = new GameBoard(this) {
             @Override
             public void onPush(View v) {
@@ -49,6 +51,7 @@ public class SimonSaysActivity extends AppCompatActivity {
 
                         if (userMove >= board.sizeOfMoves()) {
                             userPlaying = false;
+                            dataSource.insertHighscore(userMove,1);
                             userMove = 0;
                             enableBoard(false);
 
@@ -63,6 +66,7 @@ public class SimonSaysActivity extends AppCompatActivity {
                         }
                     } else {
                         userPlaying = false;
+
                         userMove = 0;
                         enableBoard(false);
 
