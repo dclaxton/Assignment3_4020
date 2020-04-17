@@ -47,9 +47,9 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         // Create table with created columns
         String sql = "CREATE TABLE " + DATA_TABLE + " (" +
                 HighscoreColumns.primary_key + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                HighscoreColumns.simon_says + " TEXT , " +
-                HighscoreColumns.player_adds + " TEXT ," +
-                HighscoreColumns.simon_rewind + " TEXT  " +
+                HighscoreColumns.simon_says + " INTEGER , " +
+                HighscoreColumns.player_adds + " INTEGER ," +
+                HighscoreColumns.simon_rewind + " INTEGER  " +
                 ");";
 
         db.execSQL(sql);

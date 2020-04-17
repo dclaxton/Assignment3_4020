@@ -36,14 +36,14 @@ public class DbDataSource {
     }
 
     // Gets all Highscores
-    public List<String> getAllHighscores() {
-        List<String> highscores = new ArrayList<>();
+    public List<Integer> getAllHighscores() {
+        List<Integer> highscores = new ArrayList<>();
         String columns[] = MySqlLiteHelper.HighscoreColumns.names();
         Cursor cursor = database.query(MySqlLiteHelper.DATA_TABLE,columns,null,null,null,null, null);
         cursor.moveToFirst();
 
         while(!cursor.isAfterLast()) {
-            String highscore = cursorToHighscore(cursor);
+            Integer highscore = cursorToHighscore(cursor);
             highscores.add(highscore);
             cursor.moveToNext();
 
@@ -53,20 +53,20 @@ public class DbDataSource {
     }
 
     // Inserts highscore into DB
-    public void insertHighscore(String timeRecorded,int whichGame) {
+    public void insertHighscore(String scoreRecorded,int whichGame) {
         ContentValues contentValues = new ContentValues();
         if(whichGame == 1)
         {
-            contentValues.put(MySqlLiteHelper.HighscoreColumns.simon_says.toString(),timeRecorded);
+            contentValues.put(MySqlLiteHelper.HighscoreColumns.simon_says.toString(),scoreRecorded);
         }
         else if(whichGame == 2)
         {
-            contentValues.put(MySqlLiteHelper.HighscoreColumns.player_adds.toString(),timeRecorded);
+            contentValues.put(MySqlLiteHelper.HighscoreColumns.player_adds.toString(),scoreRecorded);
 
         }
         else
         {
-            contentValues.put(MySqlLiteHelper.HighscoreColumns.simon_rewind.toString(),timeRecorded);
+            contentValues.put(MySqlLiteHelper.HighscoreColumns.simon_rewind.toString(),scoreRecorded);
         }
 
         open();
@@ -74,11 +74,10 @@ public class DbDataSource {
     }
 
 
-
-    private String cursorToHighscore(Cursor cursor)
+//going to need updating 
+    private Integer cursorToHighscore(Cursor cursor)
     {
-        String highScore = "";
-
+        Integer highScore = new Integer(1);
         //int scoreId = cursor.getInt(MySqlLiteHelper.HighscoreColumns.primary_key.ordinal());
 
         String SimonSays = cursor.getString(MySqlLiteHelper.HighscoreColumns.simon_says.ordinal());
@@ -89,6 +88,8 @@ public class DbDataSource {
 
         return highScore;
     }
+
+
 
 
 
