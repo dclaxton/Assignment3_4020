@@ -32,6 +32,10 @@
             android:name="edu.apsu.csci.Assignment3_4020.activities.CreditsActivity"
             android:windowSoftInputMode="stateHidden" >
         </activity>
+        <activity
+            android:name="edu.apsu.csci.Assignment3_4020.activities.HighscoreActivity"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
     </application>
 
 </manifest>
