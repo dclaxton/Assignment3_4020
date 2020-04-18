@@ -75,12 +75,6 @@
                     android:text="@string/simon_rewind" />
 
                 <Button
-                    android:id="@+id/highscore_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="HighScores" />
-
-                <Button
                     android:id="@+id/credits_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

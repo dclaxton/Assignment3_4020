@@ -1,5 +1,6 @@
 package edu.apsu.csci.Assignment3_4020.classes;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,14 +32,21 @@ class Alert {
             aBuilder.setMessage(R.string.simon_rewind_instructions);
         }
 
-        ad = aBuilder.create();
-        ad.show();
+        buildDialog();
     }
 
     void showScores(int score, String highScore) {
         aBuilder.setTitle("Game Over");
         aBuilder.setMessage("Score: " + score + "\nHigh Score: " + highScore);
+
+        buildDialog();
+    }
+
+    private void buildDialog() {
         ad = aBuilder.create();
+        ad.setCancelable(false);
+        ad.setCanceledOnTouchOutside(false);
+
         ad.show();
     }
 
@@ -46,7 +54,18 @@ class Alert {
         aBuilder.setPositiveButton(s, dcl);
     }
 
-    void setNegativeButton(String s, DialogInterface.OnClickListener dcl) {
+    private void setNegativeButton(String s, DialogInterface.OnClickListener dcl) {
         aBuilder.setNegativeButton(s, dcl);
+    }
+
+    void backToMenu(final Activity a) {
+        setNegativeButton("Menu", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if (i == DialogInterface.BUTTON_NEGATIVE) {
+                    a.finish();
+                }
+            }
+        });
     }
 }

@@ -74,6 +74,7 @@ public abstract class GameLogic extends AppCompatActivity {
             }
         });
 
+        alert.backToMenu(this);
         alert.showInstructions();
     }
 
@@ -98,19 +99,11 @@ public abstract class GameLogic extends AppCompatActivity {
             }
         });
 
-        alert.setNegativeButton("Menu", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                if (i == DialogInterface.BUTTON_NEGATIVE) {
-                    finish();
-                }
-            }
-        });
 
-
-        //get certain game highscores
+        // Get certain game highscores
         DbDataSource dataSource = new DbDataSource(this);
 
+        alert.backToMenu(this);
         // Pass DB scores here
         alert.showScores(score, dataSource.getHighscore(whichGame));
     }

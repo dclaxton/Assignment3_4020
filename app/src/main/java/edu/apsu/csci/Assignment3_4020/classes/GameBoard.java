@@ -22,14 +22,14 @@ public abstract class GameBoard implements GamePiece.PushListener {
 
     private SoundPool soundPool;
 
-    protected GameBoard(Activity activity) {
+    GameBoard(Activity activity) {
         this.activity = activity;
         board = new GamePiece[4];
         indicator = activity.findViewById(R.id.indicator);
         moves = new ArrayList<>();
     }
 
-    public void initBoard() {
+    void initBoard() {
         ViewGroup gameBoard = activity.findViewById(R.id.gameBoardLL);
         int position = 0;
 
@@ -50,7 +50,7 @@ public abstract class GameBoard implements GamePiece.PushListener {
         }
     }
 
-    public void loadSoundPool() {
+    void loadSoundPool() {
         AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
         attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
 
@@ -88,7 +88,7 @@ public abstract class GameBoard implements GamePiece.PushListener {
         }
     }
 
-    public void releaseSoundPool() {
+    void releaseSoundPool() {
         if (soundPool != null) {
             soundPool.release();
             soundPool = null;
@@ -105,7 +105,7 @@ public abstract class GameBoard implements GamePiece.PushListener {
         }
     }
 
-    public GamePiece getBoardAt(int i) {
+    GamePiece getBoardAt(int i) {
         return board[i];
     }
 
@@ -134,7 +134,7 @@ public abstract class GameBoard implements GamePiece.PushListener {
         return moves.size();
     }
 
-    public int size() {
+    int size() {
         return board.length;
     }
 }
