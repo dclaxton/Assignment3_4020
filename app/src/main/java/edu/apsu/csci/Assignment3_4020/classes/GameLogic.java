@@ -77,7 +77,7 @@ public abstract class GameLogic extends AppCompatActivity {
         alert.showInstructions();
     }
 
-    public void endGame(int whichGame) {
+    public void endGame(int whichGame,int userMove) {
         alert = new Alert(this);
         alert.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
             @Override
@@ -110,7 +110,7 @@ public abstract class GameLogic extends AppCompatActivity {
 
         //get certain game highscores
         DbDataSource dataSource = new DbDataSource(this);
-        String highscore = "highscore: " + dataSource.getHighscore(1);
+        String highscore = "Your Score: " + userMove + "\nhighscore: " + dataSource.getHighscore(1);
 
         // Pass DB scores here
         alert.showHighScores(highscore);
