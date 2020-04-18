@@ -10,7 +10,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,89 +31,67 @@ public class DbDataSource {
         database.close();
     }
 
-    // Gets all Highscores
-    public List<Integer> getAllHighscores(int whichGame) {
+    private List<Integer> getAllHighScores(int gameID) {
         open();
 
         List<Integer> highScores = new ArrayList<>();
-        String[] columns = MySqlLiteHelper.HighscoreColumns.names(); //getWhichColumns(whichGame); //MySqlLiteHelper.HighscoreColumns.names();
+        String[] columns = MySqlLiteHelper.HighScoreColumns.names();
         Cursor cursor = database.query(MySqlLiteHelper.DATA_TABLE, columns, null, null, null, null, null);
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            Integer highscore = cursorToHighscore(cursor, whichGame);
-            highScores.add(highscore);
+            Integer high_score = cursorToHighScore(cursor, gameID);
+            highScores.add(high_score);
             cursor.moveToNext();
-
         }
+
         cursor.close();
         return highScores;
     }
 
-    private String[] getWhichColumns(int whichGame) {
-        String[] c;
-        if (whichGame == 1) {
-            c = new String[]{"simon_says"};
-        } else if (whichGame == 2) {
-            c = new String[]{"simon_rewind"};
-        } else {
-            c = new String[]{"player_adds"};
-        }
-        return c;
-    }
-
-    // Inserts highscore into DB
-    public void insertHighscore(int whichGame, int scoreRecorded) {
+    public void insertHighScore(int gameID, int scoreRecorded) {
         ContentValues contentValues = new ContentValues();
-        if (whichGame == 1) {
-            contentValues.put(MySqlLiteHelper.HighscoreColumns.simon_says.toString(), scoreRecorded);
-        } else if (whichGame == 2) {
-            contentValues.put(MySqlLiteHelper.HighscoreColumns.player_adds.toString(), scoreRecorded);
-
+        if (gameID == 1) {
+            contentValues.put(MySqlLiteHelper.HighScoreColumns.simon_says.toString(), scoreRecorded);
+        } else if (gameID == 2) {
+            contentValues.put(MySqlLiteHelper.HighScoreColumns.player_adds.toString(), scoreRecorded);
         } else {
-            contentValues.put(MySqlLiteHelper.HighscoreColumns.simon_rewind.toString(), scoreRecorded);
+            contentValues.put(MySqlLiteHelper.HighScoreColumns.simon_rewind.toString(), scoreRecorded);
         }
 
         open();
         database.insert(MySqlLiteHelper.DATA_TABLE, null, contentValues);
     }
 
+    private Integer cursorToHighScore(Cursor cursor, int gameID) {
+        int high_score;
 
-    //going to need updating
-    private Integer cursorToHighscore(Cursor cursor, int whichGame) {
-
-        int highscore;
-
-        //int scoreId = cursor.getInt(MySqlLiteHelper.HighscoreColumns.primary_key.ordinal());
-        if (whichGame == 1) {
-            highscore = cursor.getInt(MySqlLiteHelper.HighscoreColumns.simon_says.ordinal());
-        } else if (whichGame == 2) {
-            highscore = cursor.getInt(MySqlLiteHelper.HighscoreColumns.player_adds.ordinal());
+        if (gameID == 1) {
+            high_score = cursor.getInt(MySqlLiteHelper.HighScoreColumns.simon_says.ordinal());
+        } else if (gameID == 2) {
+            high_score = cursor.getInt(MySqlLiteHelper.HighScoreColumns.player_adds.ordinal());
         } else {
-            highscore = cursor.getInt(MySqlLiteHelper.HighscoreColumns.simon_rewind.ordinal());
+            high_score = cursor.getInt(MySqlLiteHelper.HighScoreColumns.simon_rewind.ordinal());
         }
 
-        Integer highScore = new Integer(highscore);
-
-        //String dateStr = cursor.getString(MySqlLiteHelper.HighscoreColumns.date_created.ordinal());
+        Integer highScore;
+        highScore = high_score;
 
         return highScore;
     }
 
-    //this is for the endgame alert dialog
-    public String getHighscore(int whichGame) {
-        List<Integer> highScores = getAllHighscores(whichGame);
+    public String getHighScore(int gameID) {
+        List<Integer> highScores = getAllHighScores(gameID);
         int highScore = highScores.get(0);
 
+        // Determines high score
         for (int i : highScores) {
             if (i > highScore) {
                 highScore = i;
             }
-
         }
 
         return String.valueOf(highScore);
     }
-
 
 }

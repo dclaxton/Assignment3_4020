@@ -17,14 +17,14 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     static final String DATA_TABLE = "Data";
 
     // DB columns
-    public enum HighscoreColumns {
+    public enum HighScoreColumns {
         primary_key,
         simon_says,
         player_adds,
         simon_rewind;
 
         public static String[] names() {
-            HighscoreColumns[] v = values();
+            HighScoreColumns[] v = values();
             String[] names = new String[v.length];
             for (int i = 0; i < v.length; i++) {
                 names[i] = v[i].toString();
@@ -42,10 +42,10 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
 
         // Create table with created columns
         String sql = "CREATE TABLE " + DATA_TABLE + " (" +
-                HighscoreColumns.primary_key + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                HighscoreColumns.simon_says + " INTEGER , " +
-                HighscoreColumns.player_adds + " INTEGER ," +
-                HighscoreColumns.simon_rewind + " INTEGER  " +
+                HighScoreColumns.primary_key + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                HighScoreColumns.simon_says + " INTEGER , " +
+                HighScoreColumns.player_adds + " INTEGER ," +
+                HighScoreColumns.simon_rewind + " INTEGER  " +
                 ");";
 
         db.execSQL(sql);

@@ -1,9 +1,14 @@
+/*
+    Authors: Daniel Davis, Dalton Claxton, Peyton White
+    Date: 14 April 2020
+    Description: A simple implementation of the classic game Simon
+ */
+
 package edu.apsu.csci.Assignment3_4020.classes;
 
 import android.app.Activity;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -41,6 +46,7 @@ public abstract class GameBoard implements GamePiece.PushListener {
                     if (((LinearLayout) child).getChildAt(j) instanceof GamePiece) {
                         GamePiece piece = (GamePiece) ((LinearLayout) child).getChildAt(j);
 
+                        // Initialize board listeners
                         board[position] = activity.findViewById(piece.getId());
                         board[position].setPushListener(this);
                         position++;
@@ -64,6 +70,7 @@ public abstract class GameBoard implements GamePiece.PushListener {
         final int miId = soundPool.load(activity, R.raw.mi, 1);
         final int faId = soundPool.load(activity, R.raw.fa, 1);
 
+        // Associate game pieces with their sounds
         for (GamePiece piece : board) {
             switch (piece.getId()) {
                 case R.id.topleft:

@@ -15,10 +15,12 @@ public class SimonSaysActivity extends GameLogic {
 
     public void makeMove(View v) {
         if (userPlaying) {
+            // Increments the sequence if correct
             if (v == board.getMove(userMove)) {
                 board.setIndicator("" + (userMove + 1));
                 userMove++;
 
+                // If the correct sequence is followed
                 if (userMove >= board.sizeOfMoves()) {
                     userPlaying = false;
 
@@ -35,8 +37,9 @@ public class SimonSaysActivity extends GameLogic {
                     }, 1000);
                 }
             } else {
+                // Incorrect move is made
                 userPlaying = false;
-                dataSource.insertHighscore(1, board.sizeOfMoves() - 1);
+                dataSource.insertHighScore(1, board.sizeOfMoves() - 1);
                 endGame(1, board.sizeOfMoves() - 1);
 
                 userMove = 0;

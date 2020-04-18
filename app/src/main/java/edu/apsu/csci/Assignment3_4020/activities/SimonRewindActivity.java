@@ -13,14 +13,17 @@ import edu.apsu.csci.Assignment3_4020.classes.GameLogic;
 
 public class SimonRewindActivity extends GameLogic {
 
+    // Starts at one for the first move
     private int userMove = 1;
 
     public void makeMove(View v) {
         if (userPlaying) {
+            // Increments the sequence if correct
             if (v == board.getMove(board.sizeOfMoves() - userMove)) {
                 board.setIndicator("" + (userMove + 1));
                 userMove++;
 
+                // If the correct sequence is followed in reverse
                 if (userMove >= board.sizeOfMoves() + 1) {
                     userPlaying = false;
                     userMove = 1;
@@ -36,8 +39,9 @@ public class SimonRewindActivity extends GameLogic {
                     }, 1000);
                 }
             } else {
+                // Incorrect move is made
                 userPlaying = false;
-                dataSource.insertHighscore(2, board.sizeOfMoves() - 1);
+                dataSource.insertHighScore(2, board.sizeOfMoves() - 1);
                 endGame(2, board.sizeOfMoves() - 1);
 
                 userMove = 1;

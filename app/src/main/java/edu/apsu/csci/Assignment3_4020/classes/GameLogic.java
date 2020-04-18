@@ -1,6 +1,12 @@
+
+/*
+    Authors: Daniel Davis, Dalton Claxton, Peyton White
+    Date: 14 April 2020
+    Description: A simple implementation of the classic game Simon
+ */
+
 package edu.apsu.csci.Assignment3_4020.classes;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +19,6 @@ import edu.apsu.csci.Assignment3_4020.R;
 import edu.apsu.csci.Assignment3_4020.db.DbDataSource;
 
 public abstract class GameLogic extends AppCompatActivity {
-    //for db
     protected DbDataSource dataSource;
 
     protected GameBoard board;
@@ -105,7 +110,7 @@ public abstract class GameLogic extends AppCompatActivity {
 
         alert.backToMenu(this);
         // Pass DB scores here
-        alert.showScores(score, dataSource.getHighscore(whichGame));
+        alert.showScores(score, dataSource.getHighScore(whichGame));
     }
 
     protected void initializeSimon() {

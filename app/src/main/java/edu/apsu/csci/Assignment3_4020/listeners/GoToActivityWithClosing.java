@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.view.View;
 
 import edu.apsu.csci.Assignment3_4020.activities.MenuActivity;
-import edu.apsu.csci.Assignment3_4020.activities.MenuActivity;
 
 public class GoToActivityWithClosing extends GoToActivity {
     public GoToActivityWithClosing(Activity fromActivity, Class<? extends Activity> toActivityClass) {

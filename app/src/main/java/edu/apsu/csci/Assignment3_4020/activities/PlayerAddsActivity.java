@@ -7,17 +7,18 @@
 package edu.apsu.csci.Assignment3_4020.activities;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 import edu.apsu.csci.Assignment3_4020.classes.GameLogic;
 
 public class PlayerAddsActivity extends GameLogic {
 
+    // Tracks whether or not the pattern is being added to
     private boolean patternUpdating = false;
 
     public void makeMove(View v) {
         if (userPlaying) {
+            // Adds the player-chosen move to the sequence
             if (patternUpdating && userMove == board.sizeOfMoves()) {
                 board.addMove(board.getBoardAt(v));
                 board.setIndicator("?");
@@ -27,6 +28,7 @@ public class PlayerAddsActivity extends GameLogic {
                 return;
             }
 
+            // Increments the sequence if correct
             if (v == board.getMove(userMove)) {
                 board.setIndicator("" + (userMove + 1));
                 userMove++;
@@ -36,8 +38,9 @@ public class PlayerAddsActivity extends GameLogic {
                 }
 
             } else {
+                // Incorrect move is made
                 userPlaying = false;
-                dataSource.insertHighscore(3, board.sizeOfMoves() - 1);
+                dataSource.insertHighScore(3, board.sizeOfMoves() - 1);
                 endGame(3, board.sizeOfMoves() - 1);
 
                 userMove = 0;
