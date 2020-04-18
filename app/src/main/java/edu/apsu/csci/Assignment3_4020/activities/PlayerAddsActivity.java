@@ -37,8 +37,9 @@ public class PlayerAddsActivity extends GameLogic {
 
             } else {
                 userPlaying = false;
-                dataSource.insertHighscore(userMove, 3);
-                endGame(3,userMove);
+                dataSource.insertHighscore(3, board.sizeOfMoves() - 1);
+                endGame(3, board.sizeOfMoves() - 1);
+
                 userMove = 0;
                 board.enableBoard(false);
 

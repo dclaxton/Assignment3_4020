@@ -37,8 +37,9 @@ public class SimonRewindActivity extends GameLogic {
                 }
             } else {
                 userPlaying = false;
-                dataSource.insertHighscore(userMove, 2);
-                endGame(2,userMove);
+                dataSource.insertHighscore(2, board.sizeOfMoves() - 1);
+                endGame(2, board.sizeOfMoves() - 1);
+
                 userMove = 1;
                 board.enableBoard(false);
 

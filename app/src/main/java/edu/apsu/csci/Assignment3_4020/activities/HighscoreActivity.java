@@ -41,14 +41,6 @@ public class HighscoreActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.buttonsimonrewind).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                highscores = dataSource.getAllHighscores(2);
-                showHighscores(highscores);
-            }
-        });
-
         findViewById(R.id.buttonplayeradd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,17 +49,20 @@ public class HighscoreActivity extends AppCompatActivity {
             }
         });
 
-
-
+        findViewById(R.id.buttonsimonrewind).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                highscores = dataSource.getAllHighscores(2);
+                showHighscores(highscores);
+            }
+        });
     }
 
-    private void showHighscores(List<Integer> highscores)
-    {
+    private void showHighscores(List<Integer> highscores) {
         final TextView tv = findViewById(R.id.textviewhighscores);
         tv.setText("");
-        for(int i : highscores)
-        {
-            if(i > 0) {
+        for (int i : highscores) {
+            if (i > 0) {
                 tv.append(i + "\n");
                 Log.i("Highscores", "S: " + i);
             }

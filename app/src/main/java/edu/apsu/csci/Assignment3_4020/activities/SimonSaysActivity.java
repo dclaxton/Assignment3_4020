@@ -36,8 +36,9 @@ public class SimonSaysActivity extends GameLogic {
                 }
             } else {
                 userPlaying = false;
-                dataSource.insertHighscore(userMove, 1);
-                endGame(1,userMove);
+                dataSource.insertHighscore(1, board.sizeOfMoves() - 1);
+                endGame(1, board.sizeOfMoves() - 1);
+
                 userMove = 0;
                 board.enableBoard(false);
 

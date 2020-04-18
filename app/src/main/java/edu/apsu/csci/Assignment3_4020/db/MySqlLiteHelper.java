@@ -17,27 +17,23 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     static final String DATA_TABLE = "Data";
 
     // DB columns
-    public enum HighscoreColumns
-    {
+    public enum HighscoreColumns {
         primary_key,
         simon_says,
         player_adds,
         simon_rewind;
 
-        public static String[] names()
-        {
+        public static String[] names() {
             HighscoreColumns[] v = values();
             String[] names = new String[v.length];
-            for(int i = 0; i < v.length;i++)
-            {
+            for (int i = 0; i < v.length; i++) {
                 names[i] = v[i].toString();
             }
             return names;
         }
     }
 
-    MySqlLiteHelper(Context context)
-    {
+    MySqlLiteHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -57,7 +53,5 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {}
 }

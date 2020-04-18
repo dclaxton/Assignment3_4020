@@ -36,7 +36,7 @@ public class GamePiece extends View implements View.OnTouchListener {
 
     public void onDraw(Canvas canvas) {
         setOnTouchListener(this);
-        drawable = (GradientDrawable)this.getBackground();
+        drawable = (GradientDrawable) this.getBackground();
     }
 
     @Override

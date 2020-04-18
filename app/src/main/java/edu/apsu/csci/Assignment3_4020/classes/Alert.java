@@ -10,7 +10,6 @@ import edu.apsu.csci.Assignment3_4020.activities.SimonRewindActivity;
 import edu.apsu.csci.Assignment3_4020.activities.SimonSaysActivity;
 
 class Alert {
-
     private AlertDialog.Builder aBuilder;
     private AlertDialog ad;
     private Context c;
@@ -22,6 +21,8 @@ class Alert {
     }
 
     void showInstructions() {
+        aBuilder.setTitle("Instructions");
+
         if (c instanceof SimonSaysActivity) {
             aBuilder.setMessage(R.string.simon_says_instructions);
         } else if (c instanceof PlayerAddsActivity) {
@@ -34,9 +35,9 @@ class Alert {
         ad.show();
     }
 
-    void showHighScores(String s) {
-
-        aBuilder.setMessage(s);
+    void showScores(int score, String highScore) {
+        aBuilder.setTitle("Game Over");
+        aBuilder.setMessage("Score: " + score + "\nHigh Score: " + highScore);
         ad = aBuilder.create();
         ad.show();
     }
